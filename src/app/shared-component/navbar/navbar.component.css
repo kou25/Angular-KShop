@@ -1,0 +1,10 @@
+.dropdown-toggle{
+    cursor: pointer
+}
+
+nav{
+    margin-bottom: 50px;
+}
+.dropdown-menu{
+z-index: 99999;
+}

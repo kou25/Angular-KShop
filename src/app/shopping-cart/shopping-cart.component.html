@@ -1,0 +1,51 @@
+<h1>Shopping Cart</h1>
+<div class="row col-10">
+<p>you have {{ shoppingCartItemCount }} in your shopping cart.</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Produnt</th>
+            <th class="text-center" style="width:230px">Quantity</th>
+            <th class="text-right" style="width:200px">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let productId of productIds" >
+            <ng-container *ngIf="ProductsArray[productId].quantity!==0">
+                <td>
+                    <div [style.backgroundImage]="'url('+ProductsArray[productId].product.imageUrl +')'" class="thumbnail" ></div>
+                </td>
+            <td>{{ProductsArray[productId].product.title}}</td>
+            <td>
+            <div class="row no-gutters">
+                <div class="col-2">
+                  <button 
+                  (click)="removeFromCart(ProductsArray[productId],productId)"
+                  class="btn btn-danger btn-block">-</button>
+                </div>
+                <div class="col text-center text" >
+                 {{getQuantity(productId)}} in cart
+                </div>
+                <div class="col-2">
+                 <button (click)="addToCart(ProductsArray[productId],productId)" class="btn btn-success btn-block">+</button>
+                </div>
+              </div>
+            </td>
+            <td  class="text-right">{{ProductsArray[productId].quantity * ProductsArray[productId].product.price | currency:'USD':true}}</td>
+        </ng-container>
+        </tr>
+    </tbody>
+    <tfoot>
+
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th  class="text-right">{{totalPrice | currency:'USD':true}}</th>
+        </tr>
+    </tfoot>
+</table>
+<a routerLink="/check-out" *ngIf="totalLength>0"  class="btn btn-primary mr-3"><i class="fa fa-shopping-cart"></i> Check Out</a>
+<button *ngIf="totalLength>0"  (click)="clearCart()" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Clear All</button>
+</div>

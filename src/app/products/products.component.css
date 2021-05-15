@@ -1,0 +1,12 @@
+.card-footer{
+    padding: 0;
+}
+.sticky-top{
+    top: 80px;
+}
+.text{
+    margin-top: 5px;
+}
+.card-footer button{
+    cursor: pointer;
+}
